@@ -12,7 +12,7 @@
 
 #include "ray.h"
 
-t_sp	*fn_spoting(t_vect3 *rayorig, t_vect3 *raydir, t_env *e, double *tnear)
+t_sp	*fn_spoting(t_vect3 *rayorig, t_vect3 *raydir, t_rt *e, double *tnear)
 {
 	int			i;
 	t_vars		var;
@@ -40,7 +40,7 @@ t_sp	*fn_spoting(t_vect3 *rayorig, t_vect3 *raydir, t_env *e, double *tnear)
 	return (spot);
 }
 
-void	ft_lighting_2(t_vars *var, t_env *e, int j)
+void	ft_lighting_2(t_vars *var, t_rt *e, int j)
 {
 	var->transmission = ft_vect_init(1.0, 1.0, 1.0);
 	var->lightdirection = sub_vect(e->spot[j]->center, var->phit);
@@ -48,7 +48,7 @@ void	ft_lighting_2(t_vars *var, t_env *e, int j)
 	var->i = 0;
 }
 
-void	ft_lighting(t_vars *var, t_env *e)
+void	ft_lighting(t_vars *var, t_rt *e)
 {
 	int		j;
 

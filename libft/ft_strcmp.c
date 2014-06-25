@@ -6,7 +6,7 @@
 /*   By: ael-kadh <ael-kadh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 17:08:30 by ael-kadh          #+#    #+#             */
-/*   Updated: 2013/11/24 03:48:43 by ael-kadh         ###   ########.fr       */
+/*   Updated: 2014/06/26 00:31:49 by sconso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	ft_strcmp(const char *s1, const char *s2)
 {
 	int	i;
 
+	if (!s1 || !s2)
+		return (0);
 	i = 0;
 	while (s1[i] == s2[i] && (s1[i] != '\0' || s2[i] != '\0'))
 		i++;

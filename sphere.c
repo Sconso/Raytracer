@@ -12,7 +12,7 @@
 
 #include "ray.h"
 
-int			object_choose(t_vect3 *org, t_vect3 *dir, t_env *e, t_vars *v)
+int			object_choose(t_vect3 *org, t_vect3 *dir, t_rt *e, t_vars *v)
 {
 	int		obj;
 
@@ -28,7 +28,7 @@ int			object_choose(t_vect3 *org, t_vect3 *dir, t_env *e, t_vars *v)
 	return (obj);
 }
 
-char		*fn_object_choose(t_vect3 *org, t_vect3 *dir, t_env *e, t_vars *v)
+char		*fn_object_choose(t_vect3 *org, t_vect3 *dir, t_rt *e, t_vars *v)
 {
 	char		*str;
 
@@ -56,7 +56,7 @@ char		*fn_object_choose(t_vect3 *org, t_vect3 *dir, t_env *e, t_vars *v)
 	return (str);
 }
 
-static void	fn_refraction(t_vars *v, t_vect3 *dir, t_env *e, int depth)
+static void	fn_refraction(t_vars *v, t_vect3 *dir, t_rt *e, int depth)
 {
 	v->facingratio = -1 * ft_dot(dir, v->nhit);
 	v->fresneleffect = ft_mix(ft_pow(1 - v->facingratio, 3), 1, 0.1);
@@ -68,7 +68,7 @@ static void	fn_refraction(t_vars *v, t_vect3 *dir, t_env *e, int depth)
 	free(v->refldir);
 }
 
-void		effects(t_vars *v, t_env *e, int dep, t_vect3 *dir)
+void		effects(t_vars *v, t_rt *e, int dep, t_vect3 *dir)
 {
 	if ((v->sphere->trans > 0 || v->sphere->reflection > 0) && dep < MAX_DEPTH)
 	{

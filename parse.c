@@ -12,7 +12,7 @@
 
 #include "ray.h"
 
-static int	ft_parse_verif_3(int fd, char *line, t_env *e, int i)
+static int	ft_parse_verif_3(int fd, char *line, t_rt *e, int i)
 {
 	if (!ft_parse_sphere(fd, line, e->objects, i))
 		return (0);
@@ -22,7 +22,7 @@ static int	ft_parse_verif_3(int fd, char *line, t_env *e, int i)
 	return (1);
 }
 
-static int	ft_parse_verif_2(int fd, char *line, t_env *e, int i)
+static int	ft_parse_verif_2(int fd, char *line, t_rt *e, int i)
 {
 	if (!ft_parse_plan(fd, line, e->objects, i))
 		return (0);
@@ -30,7 +30,7 @@ static int	ft_parse_verif_2(int fd, char *line, t_env *e, int i)
 	return (1);
 }
 
-int			parse_verif(char *line, int fd, t_env *e, int i)
+int			parse_verif(char *line, int fd, t_rt *e, int i)
 {
 	if (ft_strstr(line, "sphere"))
 	{
@@ -55,7 +55,7 @@ int			parse_verif(char *line, int fd, t_env *e, int i)
 	return (1);
 }
 
-static int	ft_parse_2(t_env *e, char *file)
+static int	ft_parse_2(t_rt *e, char *file)
 {
 	char	*line;
 	int		fd;
@@ -72,7 +72,7 @@ static int	ft_parse_2(t_env *e, char *file)
 	return (fd);
 }
 
-int			ft_parse(char *file, t_env *e)
+int			ft_parse(char *file, t_rt *e)
 {
 	int		fd;
 	int		obj_nb;

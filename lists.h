@@ -6,7 +6,7 @@
 /*   By: ael-kadh <ael-kadh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/07 21:35:46 by ael-kadh          #+#    #+#             */
-/*   Updated: 2014/06/25 23:40:34 by sconso           ###   ########.fr       */
+/*   Updated: 2014/06/26 00:41:54 by sconso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,13 @@ typedef struct			s_env
 {
 	void				*mlx;
 	void				*win;
-	char				**types;
-	t_sp				**objects;
-	t_sp				**spot;
+	void				*cmlx;
+	void				*cwin;
+	void				*img;
+	char				*data;
+	int					bpp;
+	int					sizeline;
+	int					endian;
 	double				invwidth;
 	double				invheight;
 	double				fov;
@@ -74,12 +78,10 @@ typedef struct			s_env
 	double				angle;
 	t_vect3				*raydir;
 	t_vect3				*cam_ray;
-	void				*img;
-	char				*data;
-	int					bpp;
-	int					sizeline;
-	int					endian;
-}						t_env;
+	char				**types;
+	t_sp				**objects;
+	t_sp				**spot;
+}						t_rt;
 
 typedef struct			s_vars
 {

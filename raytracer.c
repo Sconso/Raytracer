@@ -12,7 +12,7 @@
 
 #include "ray.h"
 
-static void		freed(t_env *e)
+static void		freed(t_rt *e)
 {
 	int		i;
 
@@ -38,7 +38,7 @@ static void		freed(t_env *e)
 	free(e);
 }
 
-static void		fill_color(int x, int y, t_env *e, t_vect3 *tmp)
+static void		fill_color(int x, int y, t_rt *e, t_vect3 *tmp)
 {
 	int		color;
 	int		r;
@@ -56,7 +56,7 @@ static void		fill_color(int x, int y, t_env *e, t_vect3 *tmp)
 /*	mlx_pixel_put(e->mlx, e->win, x, y, color);*/
 }
 
-static void		ray_direction_init(int x, int y, t_env *e)
+static void		ray_direction_init(int x, int y, t_rt *e)
 {
 	double		xx;
 	double		yy;
@@ -67,7 +67,7 @@ static void		ray_direction_init(int x, int y, t_env *e)
 	fn_normalize(e->raydir);
 }
 
-void			ft_render(t_env *e)
+void			ft_render(t_rt *e)
 {
 	int			x;
 	int			y;

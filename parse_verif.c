@@ -28,7 +28,7 @@ t_vect3		*ft_fill_vect(char *line, t_vect3 *v)
 	return (v);
 }
 
-int			verif_obj(char *line, t_env *e, int fd, int i)
+int			verif_obj(char *line, t_rt *e, int fd, int i)
 {
 	if (ft_occ_nb(line, '*') != 1 && line[0] != '*')
 		return (0);
@@ -37,7 +37,7 @@ int			verif_obj(char *line, t_env *e, int fd, int i)
 	return (1);
 }
 
-int			verif_spot(char *line, t_env *e, int fd, int i)
+int			verif_spot(char *line, t_rt *e, int fd, int i)
 {
 	if (ft_occ_nb(line, '*') != 1 && line[0] != '*')
 		return (0);
@@ -69,7 +69,7 @@ int			verif_number(char *line)
 	return (ft_atoi(&line[1]));
 }
 
-int			ft_parse_init(int *obj_nb, int *spot_nb, t_env *e, int fd)
+int			ft_parse_init(int *obj_nb, int *spot_nb, t_rt *e, int fd)
 {
 	char	*line;
 

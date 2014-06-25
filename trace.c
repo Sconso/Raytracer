@@ -12,7 +12,7 @@
 
 #include "ray.h"
 
-static t_vect3	*fn_trace2(t_vars *v, t_env *e, int depth, t_vect3 *dir)
+static t_vect3	*fn_trace2(t_vars *v, t_rt *e, int depth, t_vect3 *dir)
 {
 	fn_normalize(v->nhit);
 	v->bias = 1e-4;
@@ -31,7 +31,7 @@ static t_vect3	*fn_trace2(t_vars *v, t_env *e, int depth, t_vect3 *dir)
 	return (add_vect(v->surface, v->sphere->emission_c));
 }
 
-t_vect3			*fn_trace(t_vect3 *rayorig, t_vect3 *dir, t_env *e, int depth)
+t_vect3			*fn_trace(t_vect3 *rayorig, t_vect3 *dir, t_rt *e, int depth)
 {
 	char		*str;
 	t_vars		*v;

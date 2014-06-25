@@ -12,7 +12,7 @@
 
 #include "ray.h"
 
-int			the_parse(int fd, int obj_nb, int spot_nb, t_env *e)
+int			the_parse(int fd, int obj_nb, int spot_nb, t_rt *e)
 {
 	int		i;
 	char	*line;
