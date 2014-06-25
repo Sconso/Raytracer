@@ -6,7 +6,7 @@
 /*   By: ael-kadh <ael-kadh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/24 23:08:38 by ael-kadh          #+#    #+#             */
-/*   Updated: 2014/06/25 23:10:56 by sconso           ###   ########.fr       */
+/*   Updated: 2014/06/25 23:43:12 by sconso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,16 @@ int		key_hook(int keycode, t_env *e)
 
 int		expose(t_env *e)
 {
+	printf("%p - %p - %p\n", e->mlx, e->win, e->img);
 	if (e->img)
 		mlx_destroy_image(e->mlx, e->img);
 	e->img = mlx_new_image(e->mlx, LAR, LON);
 	e->data = mlx_get_data_addr(e->img, &e->bpp,
 								  &e->sizeline, &e->endian);
-
+	printf("%p - %p - %p\n", e->mlx, e->win, e->img);
 	ft_render(e);
-	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 
+	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 	return (0);
 }
 

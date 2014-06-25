@@ -6,7 +6,7 @@
 /*   By: ael-kadh <ael-kadh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/07 21:35:46 by ael-kadh          #+#    #+#             */
-/*   Updated: 2014/06/25 22:25:54 by sconso           ###   ########.fr       */
+/*   Updated: 2014/06/25 23:40:34 by sconso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <mlx.h>
 # include <X11/xlib.h>
 
-# define MLX_MAX_EVENT LASTEvent
+/*# define MLX_MAX_EVENT LASTEvent*/
 # define LAR 1080
 # define LON 800
 # define MAX_DEPTH 5
@@ -59,49 +59,11 @@ typedef struct			s_sp
 	char				axe;
 }						t_sp;
 
-typedef struct			s_event_list
-{
-	int					mask;
-	int					(*hook)();
-	void				*param;
-}						t_event_list;
-
-typedef struct			s_win_list
-{
-	Window				window;
-	GC					gc;
-	struct s_win_list	*next;
-	int					(*mouse_hook)();
-	int					(*key_hook)();
-	int					(*expose_hook)();
-	void				*mouse_param;
-	void				*key_param;
-	void				*expose_param;
-	t_event_list		hooks[MLX_MAX_EVENT];
-}						t_win_list;
-
-typedef struct			s_xvar
-{
-	Display				*display;
-	Window				root;
-	int					screen;
-	int					depth;
-	Visual				*visual;
-	Colormap			cmap;
-	int					private_cmap;
-	t_win_list			*win_list;
-	int					(*loop_hook)();
-	void				*loop_param;
-	int					use_xshm;
-	int					pshm_format;
-	int					do_flush;
-	int					decrgb[6];
-}						t_xvar;
 
 typedef struct			s_env
 {
-	t_xvar				*mlx;
-	t_win_list			*win;
+	void				*mlx;
+	void				*win;
 	char				**types;
 	t_sp				**objects;
 	t_sp				**spot;

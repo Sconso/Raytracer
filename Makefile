@@ -6,7 +6,7 @@
 #    By: ael-kadh <ael-kadh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/01/07 21:28:19 by ael-kadh          #+#    #+#              #
-#    Updated: 2014/06/25 22:47:45 by sconso           ###   ########.fr        #
+#    Updated: 2014/06/25 23:42:22 by sconso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRC			=	main.c vectors.c raytracer.c raytray.c trace.c\
 
 HEAD		=	ray.h lists.h
 OBJ			=	$(SRC:.c=.o)
-FLAGS		=	-Wall -Wextra -Werror -g3
+FLAGS		=	-Wall -Wextra -Werror -g3 -g -ggdb
 
 # COLORS
 C_NO		=	"\033[00m"
