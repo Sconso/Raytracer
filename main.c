@@ -6,7 +6,7 @@
 /*   By: ael-kadh <ael-kadh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/24 23:08:38 by ael-kadh          #+#    #+#             */
-/*   Updated: 2014/06/26 00:55:04 by sconso           ###   ########.fr       */
+/*   Updated: 2014/06/26 01:00:55 by sconso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ int		expose(t_rt *e)
 	printf("Expose entry = \n\t%p - %p\n\t%p - %p\n\t%p\n\n", e->mlx, e->win, e->cmlx, e->cwin, e->img);
 	printf("After Copy = \n\t%p - %p\n\t%p - %p\n\t%p\n\n", e->mlx, e->win, e->cmlx, e->cwin, e->img);
 	if (e->img)
-		mlx_destroy_image(mlx, e->img);
-	e->img = mlx_new_image(mlx, LAR, LON);
+		mlx_destroy_image(e->mlx, e->img);
+	e->img = mlx_new_image(e->mlx, LAR, LON);
 	e->data = mlx_get_data_addr(e->img, &e->bpp, &e->sizeline, &e->endian);
 	printf("Before Render = \n\t%p - %p\n\t%p - %p\n\t%p\n\n", e->mlx, e->win, e->cmlx, e->cwin, e->img);
 	ft_render(e);
 	printf("After Render = \n\t%p - %p\n\t%p - %p\n\t%p\n\n", e->mlx, e->win, e->cmlx, e->cwin, e->img);
 
-	mlx_put_image_to_window(mlx, win, e->img, 0, 0);
+	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 	printf("Expose end = \n\t%p - %p\n\t%p - %p\n\t%p\n", e->mlx, e->win, e->cmlx, e->cwin, e->img);
 	printf("Struct End = %p\n", e);
 	return (0);
