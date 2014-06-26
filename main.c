@@ -6,14 +6,41 @@
 /*   By: ael-kadh <ael-kadh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/24 23:08:38 by ael-kadh          #+#    #+#             */
-/*   Updated: 2014/06/26 01:00:55 by sconso           ###   ########.fr       */
+/*   Updated: 2014/06/26 02:42:09 by sconso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
 #include <stdio.h>
+#include <stdlib.h>
 
-int		key_hook(int keycode, t_rt *e)
+static void		freed(t_rt *e)
+{
+	int			i;
+
+	free(e->cam_ray);
+	i = 0;
+	while (e->objects[i])
+	{
+		free(e->objects[i]->center);
+		free(e->objects[i]->surface_c);
+		free(e->objects[i]->emission_c);
+		if (!ft_strcmp(e->types[i], "plan"))
+			free(e->objects[i]->normal);
+		free(e->objects[i]);
+		free(e->types[i]);
+		i++;
+	}
+	free(e->types);
+	free(e->objects);
+	i = 0;
+	while (e->spot[i])
+		free(e->spot[i++]);
+	free(e->spot);
+	free(e);
+}
+
+int				key_hook(int keycode, t_rt *e)
 {
 	(void)e;
 	if (keycode == EXIT)
@@ -21,33 +48,13 @@ int		key_hook(int keycode, t_rt *e)
 	return (0);
 }
 
-int		loop(t_rt *e)
+int				expose(t_rt *e)
 {
-	e->mlx = e->cmlx;
-	e->win = e->cwin;
-	return (1);
-}
-
-int		expose(t_rt *e)
-{
-	printf("\nStruct Begin = %p\n", e);
-	printf("Expose entry = \n\t%p - %p\n\t%p - %p\n\t%p\n\n", e->mlx, e->win, e->cmlx, e->cwin, e->img);
-	printf("After Copy = \n\t%p - %p\n\t%p - %p\n\t%p\n\n", e->mlx, e->win, e->cmlx, e->cwin, e->img);
-	if (e->img)
-		mlx_destroy_image(e->mlx, e->img);
-	e->img = mlx_new_image(e->mlx, LAR, LON);
-	e->data = mlx_get_data_addr(e->img, &e->bpp, &e->sizeline, &e->endian);
-	printf("Before Render = \n\t%p - %p\n\t%p - %p\n\t%p\n\n", e->mlx, e->win, e->cmlx, e->cwin, e->img);
-	ft_render(e);
-	printf("After Render = \n\t%p - %p\n\t%p - %p\n\t%p\n\n", e->mlx, e->win, e->cmlx, e->cwin, e->img);
-
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
-	printf("Expose end = \n\t%p - %p\n\t%p - %p\n\t%p\n", e->mlx, e->win, e->cmlx, e->cwin, e->img);
-	printf("Struct End = %p\n", e);
 	return (0);
 }
 
-int		main(int ac, char **av)
+int				main(int ac, char **av)
 {
 	t_rt		*e;
 
@@ -56,23 +63,21 @@ int		main(int ac, char **av)
 	e = (t_rt*)malloc(sizeof(t_rt));
 	if (ft_parse(av[1], e) < 0)
 	{
-		ft_printf("ERROR !\n");
+		ft_putstr("ERROR !\n");
 		exit(0);
 	}
 	if (!(e->mlx = mlx_init()))
 		return (0);
 	e->win = mlx_new_window(e->mlx, LAR, LON, "RAY's");
-
-	e->cmlx = e->mlx;
-	e->cwin = e->win;
-
-	printf("%p - %p - %p - %p - %p\n", e->mlx, e->win, e->cmlx, e->cwin, e->img);
-
 	e->img = NULL;
-
+	if (e->img)
+		mlx_destroy_image(e->mlx, e->img);
+	e->img = mlx_new_image(e->mlx, LAR, LON);
+	e->data = mlx_get_data_addr(e->img, &e->bpp, &e->sizeline, &e->endian);
+	ft_render(e);
 	mlx_key_hook(e->win, key_hook, e);
 	mlx_expose_hook(e->win, expose, e);
-	mlx_loop_hook(e->mlx, loop, e);
 	mlx_loop(e->mlx);
+	freed(e);
 	return (0);
 }

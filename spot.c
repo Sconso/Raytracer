@@ -6,11 +6,12 @@
 /*   By: ael-kadh <ael-kadh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/13 22:33:37 by ael-kadh          #+#    #+#             */
-/*   Updated: 2014/03/27 20:37:02 by ael-kadh         ###   ########.fr       */
+/*   Updated: 2014/06/26 01:37:02 by sconso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
+#include <stdlib.h>
 
 t_sp	*fn_spoting(t_vect3 *rayorig, t_vect3 *raydir, t_rt *e, double *tnear)
 {

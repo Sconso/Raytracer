@@ -6,23 +6,24 @@
 /*   By: ael-kadh <ael-kadh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/16 19:23:22 by ael-kadh          #+#    #+#             */
-/*   Updated: 2014/03/26 19:41:39 by ivannere         ###   ########.fr       */
+/*   Updated: 2014/06/26 01:44:02 by sconso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
+#include <stdlib.h>
 
 static int		plan_parse3(int fd, t_sp **plan, int i)
 {
 	char	*line;
 
-	while (COMMENT)
+	while ((line = get_next_line(fd)) && (line[0] == '/' || !line[0]))
 		;
 	line = delete_spaces(line, ' ');
 	if (!verif_real(line))
 		return (0);
 	plan[i]->reflection = ft_atoi_float(line);
-	while (COMMENT)
+	while ((line = get_next_line(fd)) && (line[0] == '/' || !line[0]))
 		;
 	line = delete_spaces(line, ' ');
 	if (!verif_real(line))
@@ -36,12 +37,12 @@ static int		fn_parse_plan2(int fd, t_sp **plan, int i)
 {
 	char		*line;
 
-	while (COMMENT)
+	while ((line = get_next_line(fd)) && (line[0] == '/' || !line[0]))
 		;
 	if (!verif_vect(line))
 		return (0);
 	plan[i]->surface_c = ft_fill_vect(line, plan[i]->surface_c);
-	while (COMMENT)
+	while ((line = get_next_line(fd)) && (line[0] == '/' || !line[0]))
 		;
 	line = delete_spaces(line, ' ');
 	if (!verif_vect(line))
@@ -56,13 +57,13 @@ static int		fn_parse_plan2(int fd, t_sp **plan, int i)
 int				ft_parse_plan(int fd, char *line, t_sp **plan, int i)
 {
 	plan[i] = (t_sp*)malloc(sizeof(t_sp));
-	while (COMMENT)
+	while ((line = get_next_line(fd)) && (line[0] == '/' || !line[0]))
 		;
 	line = delete_spaces(line, ' ');
 	if (!verif_vect(line))
 		return (0);
 	plan[i]->center = ft_fill_vect(line, plan[i]->center);
-	while (COMMENT)
+	while ((line = get_next_line(fd)) && (line[0] == '/' || !line[0]))
 		;
 	line = delete_spaces(line, ' ');
 	if (!verif_vect(line))

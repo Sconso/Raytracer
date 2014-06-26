@@ -6,11 +6,12 @@
 /*   By: ael-kadh <ael-kadh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/13 23:13:30 by ael-kadh          #+#    #+#             */
-/*   Updated: 2014/03/26 19:25:17 by ivannere         ###   ########.fr       */
+/*   Updated: 2014/06/26 01:37:27 by sconso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
+#include <stdlib.h>
 
 int		intersect_sp(t_sp *sphere, t_vect3 *rayorig, t_vect3 *dir, t_vars *v)
 {

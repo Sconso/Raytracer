@@ -6,11 +6,12 @@
 /*   By: ael-kadh <ael-kadh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/16 20:40:46 by ael-kadh          #+#    #+#             */
-/*   Updated: 2014/03/21 19:07:30 by ael-kadh         ###   ########.fr       */
+/*   Updated: 2014/06/26 01:36:31 by sconso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
+#include <stdlib.h>
 
 double		ft_disc(double a, double b, double c)
 {
@@ -32,7 +33,7 @@ double		ft_dot_inf(t_vect3 *v1, t_vect3 *v2, char axe)
 		dot = v1->x * v2->x + v1->y * v2->y;
 	else
 	{
-		ft_printf("ERROR !\n");
+		ft_putstr("ERROR !\n");
 		exit(0);
 	}
 	return (dot);

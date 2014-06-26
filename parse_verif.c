@@ -6,11 +6,12 @@
 /*   By: ael-kadh <ael-kadh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/21 15:47:35 by ael-kadh          #+#    #+#             */
-/*   Updated: 2014/03/27 20:25:10 by ael-kadh         ###   ########.fr       */
+/*   Updated: 2014/06/26 01:46:22 by sconso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
+#include <stdlib.h>
 
 t_vect3		*ft_fill_vect(char *line, t_vect3 *v)
 {
@@ -73,12 +74,12 @@ int			ft_parse_init(int *obj_nb, int *spot_nb, t_rt *e, int fd)
 {
 	char	*line;
 
-	while (COMMENT)
+	while ((line = get_next_line(fd)) && (line[0] == '/' || line[0] == 0))
 		;
 	line = delete_spaces(line, ' ');
 	if ((*obj_nb = verif_number(line)) < 0)
 		return (0);
-	while (COMMENT)
+	while ((line = get_next_line(fd)) && (line[0] == '/' || line[0] == 0))
 		;
 	line = delete_spaces(line, ' ');
 	if ((*spot_nb = verif_number(line)) < 0)

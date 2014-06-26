@@ -6,11 +6,12 @@
 /*   By: ael-kadh <ael-kadh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 02:21:45 by ael-kadh          #+#    #+#             */
-/*   Updated: 2014/03/26 19:15:11 by ivannere         ###   ########.fr       */
+/*   Updated: 2014/06/26 01:35:16 by sconso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
+#include <stdlib.h>
 
 t_vect3		*ft_vect_init(double x, double y, double z)
 {

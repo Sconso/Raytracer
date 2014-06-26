@@ -6,7 +6,7 @@
 #    By: ael-kadh <ael-kadh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/01/07 21:28:19 by ael-kadh          #+#    #+#              #
-#    Updated: 2014/06/25 23:42:22 by sconso           ###   ########.fr        #
+#    Updated: 2014/06/26 01:54:54 by sconso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME		=	rt
 SRC			=	main.c vectors.c raytracer.c raytray.c trace.c\
 				geo.c spaces.c sphere.c spot.c intersection.c\
 				object_parsing.c plan_parsing.c cone_inter.c object_normal.c\
-				parse.c parse_verif.c parse_verif_2.c parse_2.c define.c
+				parse.c parse_verif.c parse_verif_2.c parse_2.c define.c \
+				tools.c
 
 HEAD		=	ray.h lists.h
 OBJ			=	$(SRC:.c=.o)
@@ -36,9 +37,9 @@ all : $(NAME)
 $(NAME) :
 	@make -C libft
 	@gcc $(FLAGS) -I libft/includes -I /usr/X11/include -I /usr/include\
-					-I libft/printf/includes -c $(SRC)
+				 	-c $(SRC)
 	@gcc $(OBJ) -L libft -lft -L/usr/X11/lib -lmlx -lXext -lX11\
-					libft/printf/libftprintf.a -o $(NAME)
+				 	-o $(NAME)
 	@echo "Compiling" [ $(NAME) ] $(SUCCESS)
 
 clean :

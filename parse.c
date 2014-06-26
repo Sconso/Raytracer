@@ -6,11 +6,13 @@
 /*   By: ael-kadh <ael-kadh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/21 14:57:57 by ael-kadh          #+#    #+#             */
-/*   Updated: 2014/03/27 21:08:48 by ael-kadh         ###   ########.fr       */
+/*   Updated: 2014/06/26 01:54:16 by sconso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
+#include <unistd.h>
+#include <stdlib.h>
 
 static int	ft_parse_verif_3(int fd, char *line, t_rt *e, int i)
 {
@@ -63,7 +65,7 @@ static int	ft_parse_2(t_rt *e, char *file)
 	line = ft_strnew(0);
 	if ((fd = open(file, O_RDONLY)) == -1 || (read(fd, line, 0) == -1))
 		return (-1);
-	while (get_next_line(fd, &line) > 0 && (line[0] == '/' || line[0] == 0))
+	while ((line = get_next_line(fd)) && (line[0] == '/' || line[0] == 0))
 		;
 	line = delete_spaces(line, ' ');
 	if (!verif_real(line))
@@ -81,7 +83,7 @@ int			ft_parse(char *file, t_rt *e)
 
 	if ((fd = ft_parse_2(e, file)) < 0)
 		return (-1);
-	while (get_next_line(fd, &line) > 0 && (line[0] == '/' || line[0] == 0))
+	while ((line = get_next_line(fd)) && (line[0] == '/' || line[0] == 0))
 		;
 	line = delete_spaces(line, ' ');
 	if (!verif_vect(line))

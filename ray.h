@@ -6,7 +6,7 @@
 /*   By: ael-kadh <ael-kadh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/30 23:56:54 by ael-kadh          #+#    #+#             */
-/*   Updated: 2014/03/27 20:38:04 by ael-kadh         ###   ########.fr       */
+/*   Updated: 2014/06/26 01:53:43 by sconso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include <fcntl.h>
 # include <math.h>
 # include "lists.h"
-
-# define COMMENT (get_next_line(fd, &line) > 0 && (line[0] == '/' || !line[0]))
 
 int			ft_parse(char *str, t_rt *e);
 t_vect3		*ft_vect_init(double x, double y, double z);
@@ -76,5 +74,8 @@ int			the_parse(int fd, int obj_nb, int spot_nb, t_rt *e);
 
 double		ft_max(double a, double b);
 double		ft_min(double a, double b);
+
+int			ft_occ_nb(const char *str, char c);
+double		ft_atoi_float(const char *str);
 
 #endif

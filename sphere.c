@@ -6,17 +6,20 @@
 /*   By: ael-kadh <ael-kadh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/13 22:12:33 by ael-kadh          #+#    #+#             */
-/*   Updated: 2014/03/27 19:58:52 by ael-kadh         ###   ########.fr       */
+/*   Updated: 2014/06/26 02:00:49 by sconso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
+#include <stdlib.h>
 
 int			object_choose(t_vect3 *org, t_vect3 *dir, t_rt *e, t_vars *v)
 {
 	int		obj;
 
 	obj = 0;
+	if (!e->types)
+		return (0);
 	if (!ft_strcmp(e->types[v->i], "sphere"))
 		obj = intersect_sp(e->objects[v->i], org, dir, v);
 	else if (!ft_strcmp(e->types[v->i], "cylindre"))

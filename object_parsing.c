@@ -6,15 +6,16 @@
 /*   By: ael-kadh <ael-kadh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/16 19:20:32 by ael-kadh          #+#    #+#             */
-/*   Updated: 2014/03/27 20:30:12 by ael-kadh         ###   ########.fr       */
+/*   Updated: 2014/06/26 01:44:12 by sconso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
+#include <stdlib.h>
 
 int				ft_parse_cylindre(int fd, char *line, t_sp **sphere, int i)
 {
-	while (COMMENT)
+	while ((line = get_next_line(fd)) && (line[0] == '/' || !line[0]))
 		;
 	line = delete_spaces(line, ' ');
 	if (ft_occ_nb(line, '+') != 1 || line[0] != '+')
@@ -25,7 +26,7 @@ int				ft_parse_cylindre(int fd, char *line, t_sp **sphere, int i)
 	if (ft_strlen(line) != 1 || (line[0] != 'x' && line[0] != 'y'
 			&& line[0] != 'z'))
 	{
-		ft_printf("ERROR !\n");
+		ft_putstr("ERROR !\n");
 		return (0);
 	}
 	sphere[i]->axe = line[0];
@@ -34,19 +35,19 @@ int				ft_parse_cylindre(int fd, char *line, t_sp **sphere, int i)
 
 static int		fn_parse_sphere2(int fd, char *line, t_sp **sphere, int i)
 {
-	while (COMMENT)
+	while ((line = get_next_line(fd)) && (line[0] == '/' || !line[0]))
 		;
 	line = delete_spaces(line, ' ');
 	if (!verif_vect(line))
 		return (0);
 	sphere[i]->surface_c = ft_fill_vect(line, sphere[i]->surface_c);
-	while (COMMENT)
+	while ((line = get_next_line(fd)) && (line[0] == '/' || !line[0]))
 		;
 	line = delete_spaces(line, ' ');
 	if (!verif_real(line))
 		return (0);
 	sphere[i]->reflection = ft_atoi_float(line);
-	while (COMMENT)
+	while ((line = get_next_line(fd)) && (line[0] == '/' || !line[0]))
 		;
 	line = delete_spaces(line, ' ');
 	if (!verif_real(line))
@@ -60,13 +61,13 @@ int				ft_parse_sphere(int fd, char *line, t_sp **sphere, int i)
 {
 	sphere[i] = (t_sp*)malloc(sizeof(t_sp));
 	sphere[i]->emission_c = ft_vect_init(0, 0, 0);
-	while (COMMENT)
+	while ((line = get_next_line(fd)) && (line[0] == '/' || !line[0]))
 		;
 	line = delete_spaces(line, ' ');
 	if (!verif_vect(line))
 		return (0);
 	sphere[i]->center = ft_fill_vect(line, sphere[i]->center);
-	while (COMMENT)
+	while ((line = get_next_line(fd)) && (line[0] == '/' || !line[0]))
 		;
 	line = delete_spaces(line, ' ');
 	if (!verif_real(line))
@@ -83,7 +84,7 @@ int				ft_parse_spot(int fd, char *line, t_sp **spot, int i)
 {
 	if (!ft_parse_sphere(fd, line, spot, i))
 		return (0);
-	while (COMMENT)
+	while ((line = get_next_line(fd)) && (line[0] == '/' || !line[0]))
 		;
 	line = delete_spaces(line, ' ');
 	if (!verif_vect(line))

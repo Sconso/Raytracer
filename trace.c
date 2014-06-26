@@ -6,11 +6,12 @@
 /*   By: ael-kadh <ael-kadh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 03:31:05 by ael-kadh          #+#    #+#             */
-/*   Updated: 2014/03/26 19:34:03 by ivannere         ###   ########.fr       */
+/*   Updated: 2014/06/26 01:35:56 by sconso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
+#include <stdlib.h>
 
 static t_vect3	*fn_trace2(t_vars *v, t_rt *e, int depth, t_vect3 *dir)
 {

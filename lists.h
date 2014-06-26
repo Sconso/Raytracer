@@ -6,7 +6,7 @@
 /*   By: ael-kadh <ael-kadh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/07 21:35:46 by ael-kadh          #+#    #+#             */
-/*   Updated: 2014/06/26 00:41:54 by sconso           ###   ########.fr       */
+/*   Updated: 2014/06/26 02:41:20 by sconso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 
 # include <fcntl.h>
 # include <mlx.h>
-# include <X11/xlib.h>
 
-/*# define MLX_MAX_EVENT LASTEvent*/
 # define LAR 1080
 # define LON 800
 # define MAX_DEPTH 5
@@ -59,13 +57,10 @@ typedef struct			s_sp
 	char				axe;
 }						t_sp;
 
-
-typedef struct			s_env
+typedef struct			s_rt
 {
 	void				*mlx;
 	void				*win;
-	void				*cmlx;
-	void				*cwin;
 	void				*img;
 	char				*data;
 	int					bpp;
